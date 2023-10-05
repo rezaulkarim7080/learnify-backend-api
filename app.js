@@ -13,9 +13,9 @@ app.get("/", (req, res) => {
 
 /// middleware or set router
 
-const product_routes = require("./routes/products")
+const course_routes = require("./routes/courses")
 
-app.use("/api/products", product_routes);
+app.use("/api/courses", course_routes);
 
 
 const start = async () => {

@@ -1,43 +1,46 @@
 
-const Product = require("../models/productModel")
+const Course = require("../models/courseModel")
 
 
 const getAllProducts = async (req, res) => {
-    const products = await Product.find({});
+    const courses = await Course.find({});
 
     // total product
-    const totalProduct = await Product.countDocuments({});
+    const totalCourses = await Course.countDocuments({});
 
-    res.status(200).json({ totalProduct, products });
+    res.status(200).json({ totalCourses, courses });
     // res.status(200).json({ products });
 };
 
 
 
 const getAllTestingProducts = async (req, res) => {
-    const { company, name, featured, sort, select } = req.query;
+    const { seller_name, upcoming, title, featured, sort, select } = req.query;
 
 
     const qureyObject = {};
 
-    if (company) {
-        qureyObject.company = company;
+    // if (seller_name) {
+    //     qureyObject.company = seller_name;
+    // }
+
+    if (seller_name) {
+        qureyObject.seller_name = { $regex: seller_name, $options: 'i' };
     }
 
-    if (name) {
-        qureyObject.name = { $regex: name, $options: 'i' };
+    if (title) {
+        qureyObject.title = { $regex: title, $options: 'i' };
     }
-    if (featured) {
-        qureyObject.featured = featured;
+    if (upcoming) {
+        qureyObject.upcoming = upcoming;
     }
 
-    let apiData = Product.find(qureyObject);
+    let apiData = Course.find(qureyObject);
 
 
     // sort
 
     if (sort) {
-        // let sortFix = sort.replace(",", " ");// it take 2 parameter
 
         let sortFix = sort.split(",").join(" ");
         apiData = apiData.sort(sortFix);
@@ -47,12 +50,9 @@ const getAllTestingProducts = async (req, res) => {
     // select
 
     if (select) {
-        // let selectFix = select.replace(",", " ");// it take 2 parameter
-
-        let selectFix = select.split(",").join(" "); // betterWay-> this is another way of select
+        let selectFix = select.split(",").join(" ");
         apiData = apiData.select(selectFix);
     }
-
 
     // pagination
 
@@ -61,19 +61,12 @@ const getAllTestingProducts = async (req, res) => {
     let skip = (page - 1) * limit;
     apiData = apiData.skip(skip).limit(limit);
 
-
     // total product
-    const totalProduct = await Product.countDocuments({});
+    const totalCourses = await Course.countDocuments({});
 
 
-    // console.log(qureyObject);
-
-    const products = await apiData.sort(sort);
-    res.status(200).json({ totalProduct, products });
-
-
-    // const products = await Product.find(req.query)
-    // res.status(200).json({ products });
+    const courses = await apiData.sort(sort);
+    res.status(200).json({ totalCourses, courses });
 
 };
 
