@@ -6,7 +6,7 @@ const router = express.Router();
 
 // router.get("/", getAllProducts, getAllTestingProducts);
 router.get("/", getAllProducts);
-router.get("/testing", getAllTestingProducts);
+router.get("/courses", getAllTestingProducts);
 
 
 module.exports = router;

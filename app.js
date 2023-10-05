@@ -15,7 +15,8 @@ app.get("/", (req, res) => {
 
 const course_routes = require("./routes/courses")
 
-app.use("/api/courses", course_routes);
+app.use("/api", course_routes);
+// app.use("/api/courses", course_routes);
 
 
 const start = async () => {
