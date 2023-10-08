@@ -6,7 +6,7 @@ const getAllProducts = async (req, res) => {
     const courses = await Course.find({});
 
     // total product
-    const totalCourses = await Course.countDocuments({});
+    // const totalCourses = await Course.countDocuments({});
 
     res.status(200).json({ totalCourses, courses });
     // res.status(200).json({ products });
@@ -62,11 +62,11 @@ const getAllTestingProducts = async (req, res) => {
     apiData = apiData.skip(skip).limit(limit);
 
     // total product
-    const totalCourses = await Course.countDocuments({});
+    // const totalCourses = await Course.countDocuments({});
 
 
     const courses = await apiData.sort(sort);
-    res.status(200).json({ totalCourses, courses });
+    res.status(200).json({ courses });
 
 };
 
