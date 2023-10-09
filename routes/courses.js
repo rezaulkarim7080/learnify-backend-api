@@ -5,7 +5,7 @@ const { getAllTestingProducts, getAllProducts, getSingleProduct } = require("../
 const router = express.Router();
 
 // router.get("/", getAllProducts, getAllTestingProducts);
-// router.get("/", getAllProducts);
+router.get("/", getAllProducts);
 router.get("/courses", getAllTestingProducts);
 
 
