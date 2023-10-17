@@ -5,8 +5,8 @@ const { getAllTestingProducts, getAllProducts, getSingleProduct } = require("../
 const router = express.Router();
 
 // router.get("/", getAllProducts, getAllTestingProducts);
-router.get("/", getAllProducts);
-router.get("/courses", getAllTestingProducts);
+router.get("/courses", getAllProducts);
+// router.get("/courses", getAllTestingProducts);
 
 
 module.exports = router;
